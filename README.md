@@ -14,4 +14,4 @@ This repository hosts the code for a semester-long project on building and exper
 2. `cd baseline/`
 3. Install dependencies: `pip install -r ../requirements.txt`
 
-## Teams & Tracks
+## Teams & Track
