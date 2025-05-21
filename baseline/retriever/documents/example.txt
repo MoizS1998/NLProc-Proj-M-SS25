@@ -1,2 +1,8 @@
-IslItaly is a country in Western Europe. Its capital is Rome, known for its art, gastronomy, and culture.
+1. France
+Located in Western Europe, France's capital Paris sits on the Seine River. Famous for the Eiffel Tower (built in 1889) and Louvre Museum housing the Mona Lisa. French is the official language.
 
+2. Italy
+A Mediterranean country with capital Rome, home to ancient ruins like the Colosseum (completed in 80 AD) and Vatican City. Known for pizza, pasta, and Renaissance art. Speaks Italian.
+
+3. Switzerland
+Landlocked Alpine nation with capital Bern. Famous for Swiss watches, chocolate (like Lindt), and the Matterhorn mountain. Has four national languages: German, French, Italian, Romansh.
