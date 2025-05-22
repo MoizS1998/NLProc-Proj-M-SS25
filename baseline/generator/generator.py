@@ -15,9 +15,10 @@ class Generator:
         """
         return self.prompt_template.format(context=context.strip(), question=question.strip())
 
-    def generate_answer(self, prompt: str) -> str:
+    def generate_answer(self, context: str, question: str) -> str:
         """
-        Generates an answer from the prompt using the model.
+        Generates an answer from the context and question using the model.
         """
+        prompt = self.build_prompt(context, question)
         response = self.pipeline(prompt, max_length=256, truncation=True)
         return response[0]["generated_text"].strip()

@@ -1,0 +1,27 @@
+[
+  {
+    "question": "Who wrote Faust?",
+    "expected_answer_contains": "Goethe",
+    "retrieved_chunks": ["Faust is a tragic play written by Johann Wolfgang von Goethe, one of the most important figures in German literature."]
+  },
+  {
+    "question": "What is the capital of France?",
+    "expected_answer_contains": "Paris",
+    "retrieved_chunks": ["Paris is the capital and most populous city of France, known for its art, fashion, and culture."]
+  },
+  {
+    "question": "What is 2 + 2?",
+    "expected_answer_contains": "4",
+    "retrieved_chunks": ["In basic arithmetic, 2 + 2 equals 4."]
+  },
+  {
+    "question": "Name a major city in Germany.",
+    "expected_answer_contains": "Berlin",
+    "retrieved_chunks": ["Berlin is the capital and a major city of Germany, known for its history, architecture, and culture."]
+  },
+  {
+    "question": "What language is spoken in Spain?",
+    "expected_answer_contains": "Spanish",
+    "retrieved_chunks": ["The official language spoken in Spain is Spanish, also known as Castilian."]
+  }
+]
