@@ -4,9 +4,9 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 import json
 from datetime import datetime
 import os
-from baseline.generator.generator import Generator  # Assumes you implement this class
+from baseline.generator.generator import Generator 
 
-# Adjust the path if needed
+
 LOG_PATH = "logs/rag_log.json"
 TEST_INPUT_PATH = "evaluation/test_inputs.json"
 
@@ -41,7 +41,7 @@ def test_pipeline(generator, test_cases, group_id="group_3"):
         question = case["question"]
         expected = case["expected_answer_contains"]
         
-        # You would replace this with actual chunk retrieval logic
+    
         retrieved_chunks = case["retrieved_chunks"]
         prompt = generator.build_prompt("\n".join(retrieved_chunks), question)
         answer = generator.generate_answer("\n".join(retrieved_chunks), question)
