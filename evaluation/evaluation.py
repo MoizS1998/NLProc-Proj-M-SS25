@@ -36,7 +36,7 @@ def load_test_questions():
 
 
 # 3. --- TEST FUNCTION ---
-def test_pipeline(generator, test_cases, group_id="group_3"):
+def test_pipeline(generator, test_cases, group_id="Three_Musketeers"):
     for case in test_cases:
         question = case["question"]
         expected = case["expected_answer_contains"]
