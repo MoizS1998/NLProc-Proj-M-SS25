@@ -1,22 +1,32 @@
 import os
 import re
 import pickle
-import numpy as np  # Added for vector normalization
+import numpy as np
 from typing import List
-
 import faiss
 from sentence_transformers import SentenceTransformer
 from PyPDF2 import PdfReader
+import nltk
+nltk.download('punkt')
+nltk.download('punkt_tab')
+from nltk.tokenize import sent_tokenize
 
 class Retriever:
-    def __init__(self, model_name="all-MiniLM-L6-v2"):
+    def __init__(self, model_name="all-MiniLM-L6-v2", max_sentences=5, overlap=1):
         self.model = SentenceTransformer(model_name)
         self.index = None
         self.documents = []
+        self.max_sentences = max_sentences
+        self.overlap = overlap
 
-    def _chunk_text(self, text: str):
-        chunks = re.split(r'\n(?=\d+\.)', text)
-        return [chunk.strip() for chunk in chunks if chunk.strip()]
+    def _chunk_text(self, text: str) -> List[str]:
+        sentences = sent_tokenize(text)
+        chunks = []
+        for i in range(0, len(sentences), self.max_sentences - self.overlap):
+            chunk = " ".join(sentences[i:i + self.max_sentences])
+            if chunk:
+                chunks.append(chunk)
+        return chunks
 
     def _load_file(self, filepath: str) -> str:
         if filepath.endswith((".txt", ".md")):
