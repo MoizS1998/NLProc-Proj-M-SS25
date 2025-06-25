@@ -1,4 +1,4 @@
-from retriever.retreiver import Retriever
+from retriever.retriever import Retriever
 from generator.generator import Generator
 import os
 

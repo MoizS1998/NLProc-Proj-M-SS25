@@ -7,7 +7,7 @@ class Generator:
         """
         self.model_name = model_name
         self.pipeline = pipeline("text2text-generation", model=model_name)
-        
+
         # Custom fandom-style prompt
         self.prompt_template = (
             "You're a superfan of this series. Based on the plot below, answer in a fandom-friendly, emotional tone.\n\n"
@@ -21,18 +21,19 @@ class Generator:
         Formats the context and question into a custom fandom prompt.
         """
         return self.prompt_template.format(
-            context=context.strip(), 
+            context=context.strip(),
             question=question.strip()
         )
 
-    def generate_answer(self, prompt: str) -> str:
+    def generate_answer(self, context: str, question: str) -> str:
         """
-        Generates an answer from the prompt using the model.
+        Builds the prompt and generates an answer using the model.
         """
+        prompt = self.build_prompt(context, question)
         response = self.pipeline(
             prompt,
-            max_new_tokens=256,   # flan-t5 uses this instead of max_length
-            do_sample=False,      # Deterministic output
+            max_new_tokens=256,
+            do_sample=False,
             truncation=True
         )
         return response[0]["generated_text"].strip()

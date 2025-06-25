@@ -1,12 +1,9 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 import json
 from datetime import datetime
 import os
-from baseline.generator.generator import Generator 
+from baseline.generator.generator.py import Generator  # Assumes you implement this class
 
-
+# Adjust the path if needed
 LOG_PATH = "logs/rag_log.json"
 TEST_INPUT_PATH = "evaluation/test_inputs.json"
 
@@ -36,13 +33,14 @@ def load_test_questions():
 
 
 # 3. --- TEST FUNCTION ---
-def test_pipeline(generator, test_cases, group_id="Three_Musketeers"):
+def test_pipeline(generator, test_cases, group_id="group_3"):
     for case in test_cases:
         question = case["question"]
         expected = case["expected_answer_contains"]
         
-    
-        retrieved_chunks = case["retrieved_chunks"]
+        # You would replace this with actual chunk retrieval logic
+        retrieved_chunks = ["This is a dummy chunk mentioning Goethe and Faust."]
+        
         prompt = generator.build_prompt("\n".join(retrieved_chunks), question)
         answer = generator.generate_answer("\n".join(retrieved_chunks), question)
 
@@ -64,7 +62,7 @@ def test_pipeline(generator, test_cases, group_id="Three_Musketeers"):
 
 # 4. --- MAIN EXECUTION ---
 if __name__ == "__main__":
-    # Load your generator 
+    # Load your generator (start with flan-t5-base or any small model)
     generator = Generator(model_name="google/flan-t5-base")
 
     # Load test questions

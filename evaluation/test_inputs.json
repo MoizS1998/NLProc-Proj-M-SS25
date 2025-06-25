@@ -1,27 +1,152 @@
 [
   {
-    "question": "Who wrote Faust?",
-    "expected_answer_contains": "Goethe",
-    "retrieved_chunks": ["Faust is a tragic play written by Johann Wolfgang von Goethe, one of the most important figures in German literature."]
+    "question": "Who kills Daenerys in Game of Thrones?",
+    "expected_answer_contains": "Jon Snow",
+    "retrieved_chunks": ["In the final episode of Game of Thrones, Jon Snow stabs Daenerys Targaryen to prevent her tyrannical rule."]
   },
   {
-    "question": "What is the capital of France?",
-    "expected_answer_contains": "Paris",
-    "retrieved_chunks": ["Paris is the capital and most populous city of France, known for its art, fashion, and culture."]
+    "question": "What happens at the end of Friends?",
+    "expected_answer_contains": "Monica and Chandler adopt",
+    "retrieved_chunks": ["In the Friends series finale, Monica and Chandler adopt twins and move out of their apartment."]
   },
   {
-    "question": "What is 2 + 2?",
-    "expected_answer_contains": "4",
-    "retrieved_chunks": ["In basic arithmetic, 2 + 2 equals 4."]
+    "question": "In which episode does Jim propose to Pam?",
+    "expected_answer_contains": "Season 5",
+    "retrieved_chunks": ["Jim proposes to Pam at a gas station in the Season 5 premiere of The Office."]
   },
   {
-    "question": "Name a major city in Germany.",
-    "expected_answer_contains": "Berlin",
-    "retrieved_chunks": ["Berlin is the capital and a major city of Germany, known for its history, architecture, and culture."]
+    "question": "What is Eleven's real name in Stranger Things?",
+    "expected_answer_contains": "Jane",
+    "retrieved_chunks": ["Dr. Owens reveals that Eleven's real name is Jane Ives, later changed to Jane Hopper."]
   },
   {
-    "question": "What language is spoken in Spain?",
-    "expected_answer_contains": "Spanish",
-    "retrieved_chunks": ["The official language spoken in Spain is Spanish, also known as Castilian."]
+    "question": "Who dies in the final episode of Breaking Bad?",
+    "expected_answer_contains": "Walter White",
+    "retrieved_chunks": ["Walter White dies in the series finale of Breaking Bad after rescuing Jesse from captivity."]
+  },
+  {
+    "question": "What is the name of Harry Potter's godfather?",
+    "expected_answer_contains": "Sirius Black",
+    "retrieved_chunks": ["Sirius Black is Harry Potter's godfather and a member of the Order of the Phoenix."]
+  },
+  {
+    "question": "Who becomes king at the end of Game of Thrones?",
+    "expected_answer_contains": "Bran",
+    "retrieved_chunks": ["Tyrion suggests Bran Stark as king, and he is chosen to rule Westeros."]
+  },
+  {
+    "question": "What is the capital of Westeros?",
+    "expected_answer_contains": "King's Landing",
+    "retrieved_chunks": ["King's Landing is the capital city of the Seven Kingdoms in Game of Thrones."]
+  },
+  {
+    "question": "Who does Rachel end up with in Friends?",
+    "expected_answer_contains": "Ross",
+    "retrieved_chunks": ["In the series finale, Rachel chooses to stay in New York and reunites with Ross."]
+  },
+  {
+    "question": "What spell does Harry use to defeat Voldemort?",
+    "expected_answer_contains": "Expelliarmus",
+    "retrieved_chunks": ["During their final duel, Harry uses Expelliarmus to disarm Voldemort, leading to his defeat."]
+  },
+  {
+    "question": "What does Dwight do when he becomes manager?",
+    "expected_answer_contains": "fire a gun",
+    "retrieved_chunks": ["As interim manager, Dwight Schrute fires a gun in the office to assert dominance."]
+  },
+  {
+    "question": "Who is Vecna in Stranger Things Season 4?",
+    "expected_answer_contains": "Henry",
+    "retrieved_chunks": ["Vecna is revealed to be Henry Creel, a powerful psychic who became One in Dr. Brenner's program."]
+  },
+  {
+    "question": "What is the name of the blue crystal drug in Breaking Bad?",
+    "expected_answer_contains": "Blue Sky",
+    "retrieved_chunks": ["Walter White manufactures a highly pure blue methamphetamine known as Blue Sky."]
+  },
+  {
+    "question": "What was Monica's job in Friends?",
+    "expected_answer_contains": "chef",
+    "retrieved_chunks": ["Monica Geller works as a professional chef throughout most of Friends."]
+  },
+  {
+    "question": "Who owns the Scranton branch in The Office?",
+    "expected_answer_contains": "Dunder Mifflin",
+    "retrieved_chunks": ["The Scranton branch is one of the regional offices of Dunder Mifflin."]
+  },
+  {
+    "question": "What is Will's upside down vision in Stranger Things?",
+    "expected_answer_contains": "Mind Flayer",
+    "retrieved_chunks": ["Will sees visions of the Mind Flayer from the Upside Down, showing control over Hawkins."]
+  },
+  {
+    "question": "How does Jesse escape at the end of Breaking Bad?",
+    "expected_answer_contains": "drives away",
+    "retrieved_chunks": ["After Walter rescues him, Jesse drives away from the compound, finally free."]
+  },
+  {
+    "question": "Who was the Half-Blood Prince?",
+    "expected_answer_contains": "Snape",
+    "retrieved_chunks": ["It is revealed that Severus Snape was the Half-Blood Prince who once owned the potion book."]
+  },
+  {
+    "question": "What gift does Jim give Pam in the teapot?",
+    "expected_answer_contains": "note",
+    "retrieved_chunks": ["Jim places a heartfelt note in the teapot he gives Pam during the office Christmas party."]
+  },
+  {
+    "question": "Who said 'We were on a break!' in Friends?",
+    "expected_answer_contains": "Ross",
+    "retrieved_chunks": ["Ross repeatedly defends his actions by saying 'We were on a break!' to Rachel."]
+  },
+  {
+    "question": "Who becomes headmaster after Dumbledore?",
+    "expected_answer_contains": "Snape",
+    "retrieved_chunks": ["In Harry Potter and the Deathly Hallows, Severus Snape is appointed headmaster of Hogwarts."]
+  },
+  {
+    "question": "Which character dies in Season 1 of Game of Thrones?",
+    "expected_answer_contains": "Ned Stark",
+    "retrieved_chunks": ["Ned Stark is executed by Joffrey in Season 1, shocking audiences."]
+  },
+  {
+    "question": "What is Chandler's job?",
+    "expected_answer_contains": "statistical analysis",
+    "retrieved_chunks": ["Chandler works in statistical analysis and data reconfiguration, a running joke in Friends."]
+  },
+  {
+    "question": "Who created the Mind Flayer in Stranger Things?",
+    "expected_answer_contains": "Dr. Brenner",
+    "retrieved_chunks": ["Dr. Brenner’s experiments in Hawkins Lab are believed to have opened the gateway to the Mind Flayer."]
+  },
+  {
+    "question": "What does Michael Scott yell when he's upset?",
+    "expected_answer_contains": "Noooo",
+    "retrieved_chunks": ["In The Office, Michael Scott famously yells 'Noooo!' in frustration or shock."]
+  },
+  {
+    "question": "Where does the final battle happen in Game of Thrones?",
+    "expected_answer_contains": "King's Landing",
+    "retrieved_chunks": ["The final battle occurs at King's Landing where Daenerys destroys the Red Keep."]
+  },
+  {
+    "question": "What is Eleven's favorite snack?",
+    "expected_answer_contains": "Eggo",
+    "retrieved_chunks": ["Eleven is obsessed with Eggo waffles, which become her signature snack."]
+  },
+  {
+    "question": "How did Heisenberg get his name?",
+    "expected_answer_contains": "alias",
+    "retrieved_chunks": ["Walter White chooses the alias 'Heisenberg' as a reference to the physicist."]
+  },
+  {
+    "question": "What is Joey's catchphrase?",
+    "expected_answer_contains": "How you doin",
+    "retrieved_chunks": ["Joey Tribbiani's flirty catchphrase is 'How you doin?'. It's used throughout Friends."]
+  },
+  {
+    "question": "Who dies in fanfiction 'The Prince's Vow'?",
+    "expected_answer_contains": "Draco",
+    "retrieved_chunks": ["In the fanfic 'The Prince's Vow', Draco sacrifices himself to protect Hermione."]
   }
 ]
