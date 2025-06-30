@@ -25,11 +25,7 @@ class Generator:
             question=question.strip()
         )
 
-    def generate_answer(self, context: str, question: str) -> str:
-        """
-        Builds the prompt and generates an answer using the model.
-        """
-        prompt = self.build_prompt(context, question)
+    def generate_answer(self, prompt: str) -> str:
         response = self.pipeline(
             prompt,
             max_new_tokens=256,
