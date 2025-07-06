@@ -8,11 +8,10 @@ from sentence_transformers import SentenceTransformer
 from PyPDF2 import PdfReader
 import nltk
 nltk.download('punkt')
-nltk.download('punkt_tab')
 from nltk.tokenize import sent_tokenize
 
 class Retriever:
-    def __init__(self, model_name="all-MiniLM-L6-v2", max_sentences=5, overlap=1):
+    def __init__(self, model_name="all-MiniLM-L6-v2", max_sentences=15, overlap=7):
         self.model = SentenceTransformer(model_name)
         self.index = None
         self.documents = []
@@ -24,7 +23,7 @@ class Retriever:
         chunks = []
         for i in range(0, len(sentences), self.max_sentences - self.overlap):
             chunk = " ".join(sentences[i:i + self.max_sentences])
-            if chunk:
+            if chunk.strip():
                 chunks.append(chunk)
         return chunks
 
@@ -45,24 +44,46 @@ class Retriever:
             chunks = self._chunk_text(text)
             self.documents.extend(chunks)
 
-        # Generate and normalize embeddings
         embeddings = self.model.encode(self.documents, show_progress_bar=True)
         norms = np.linalg.norm(embeddings, axis=1, keepdims=True)
         normalized_embeddings = embeddings / norms
 
-        # Create FAISS index with inner product (cosine similarity)
         dimension = normalized_embeddings.shape[1]
         self.index = faiss.IndexFlatIP(dimension)
         self.index.add(normalized_embeddings.astype('float32'))
 
     def query(self, question: str, top_k: int = 3) -> List[str]:
-        # Normalize query embedding
         query_embedding = self.model.encode([question])
         query_embedding = query_embedding / np.linalg.norm(query_embedding)
-        
-        # Search with cosine similarity
-        similarities, indices = self.index.search(query_embedding.astype('float32'), top_k)
-        return [self.documents[i] for i in indices[0]]
+
+        similarities, indices = self.index.search(query_embedding.astype('float32'), top_k * 10)
+
+        # Positional boosting: favor later chunks slightly
+        total_docs = len(self.documents)
+        candidate_chunks = []
+        for idx, i in enumerate(indices[0]):
+            score = similarities[0][idx]
+            position_weight = 1.0 + (i / total_docs) * 0.1  # 10% bonus to last chunks
+            boosted_score = score * position_weight
+            candidate_chunks.append((self.documents[i], boosted_score))
+
+        # Keyword-based soft reordering
+        keywords = [w.lower() for w in question.split() if w.lower() not in ("what", "where", "who", "when", "why", "how") and len(w) > 2]
+        keyword_chunks = [(chunk, score) for chunk, score in candidate_chunks if any(k in chunk.lower() for k in keywords)]
+        non_keyword_chunks = [(chunk, score) for chunk, score in candidate_chunks if not any(k in chunk.lower() for k in keywords)]
+
+        final_chunks = keyword_chunks + non_keyword_chunks
+
+        # Fallback: always include last chunk if final chunks are weak
+        if not final_chunks or final_chunks[0][1] < 0.25:
+            final_chunks.append((self.documents[-1], 0.01))
+
+        # Optional: debug output
+        print("\n🔍 Final Retrieved Chunks:")
+        for i, (chunk, score) in enumerate(final_chunks[:top_k]):
+            print(f"\n[{i+1}] Score: {score:.4f}\n{chunk[:300]}{'...' if len(chunk) > 300 else ''}")
+
+        return [chunk for chunk, _ in final_chunks[:top_k]]
 
     def save(self, path: str):
         faiss.write_index(self.index, path + ".faiss")

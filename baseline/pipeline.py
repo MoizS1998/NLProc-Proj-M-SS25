@@ -9,7 +9,7 @@ from sentence_transformers import CrossEncoder
 class Pipeline:
     def __init__(self, 
                  retriever_model: str = "all-MiniLM-L6-v2",
-                 generator_model: str = "google/flan-t5-base",
+                 generator_model: str = "google/flan-t5-large",
                  document_paths: List[str] = None):
         
         self.retriever = Retriever(model_name=retriever_model)
@@ -29,7 +29,11 @@ class Pipeline:
         reranked = [chunk for chunk, _ in sorted(zip(context_chunks, scores), key=lambda x: x[1], reverse=True)]
 
     
-        context = reranked[0]
+        context = self._build_context(question, reranked, max_tokens=480)
+
+# if all(score < 0.5 for score in scores):  {
+#     context = "\n".join(context_chunks[:5])}
+
         prompt = self.generator.build_prompt(context, question)
         answer = self.generator.generate_answer(prompt)
 
@@ -49,6 +53,31 @@ class Pipeline:
             self._live_display(question, context_chunks, scores, reranked, prompt, answer)
             
         return answer
+
+
+
+
+    def _build_context(self, question, reranked_chunks, max_tokens=480):
+        tokenizer = self.generator.pipeline.tokenizer
+        context = ""
+        for chunk in reranked_chunks:
+            new_context = context + "\n" + chunk
+            input_ids = tokenizer.encode(f"Context:\n{new_context}\n\nQuestion: {question}", truncation=True)
+            if len(input_ids) > max_tokens:
+                break
+            context = new_context  # This line should be inside the loop
+        return context.strip()
+
+
+
+
+
+
+
+
+
+
+
 
     def add_documents(self, document_paths: List[str]):
         """Add new documents to the retriever"""
@@ -88,4 +117,3 @@ class Pipeline:
     def set_verbose(self, verbose: bool = True):
         """Enable/disable live display mode"""
         self.verbose = verbose
-
