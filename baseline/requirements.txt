@@ -1,4 +1,11 @@
-openai 
-sentence-transformers 
-faiss-cpu 
-hf_xet 
+torch
+transformers
+sentence-transformers
+scikit-learn
+numpy
+pandas
+matplotlib
+seaborn
+nltk
+evaluate
+bert-score
