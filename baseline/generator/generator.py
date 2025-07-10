@@ -1,7 +1,7 @@
 from transformers import pipeline
 
 class Generator:
-    def __init__(self, model_name="google/flan-t5-large"):
+    def __init__(self, model_name="google/flan-t5-xl"):
         self.model_name = model_name
         self.pipeline = pipeline("text2text-generation", model=model_name)
 

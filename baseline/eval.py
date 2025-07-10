@@ -2,7 +2,7 @@ import json
 from pipeline import Pipeline  # adjust import if needed
 import evaluate
 import bert_score
-
+import glob
 def evaluate_pipeline(pipeline, eval_data_path: str):
     rouge = evaluate.load("rouge")
     bert_scores_list = []
@@ -13,7 +13,7 @@ def evaluate_pipeline(pipeline, eval_data_path: str):
     for example in lines:
         question = example["question"]
         true_answer = example["answer"]
-        pred = pipeline.ask(question, top_k=5)
+        pred = pipeline.ask(question, top_k=10)
         print(f"\nQ: {question}\n→ Prediction: {pred}\n→ Reference: {true_answer}\n")
         predictions.append(pred)
         references.append(true_answer)
@@ -28,6 +28,6 @@ def evaluate_pipeline(pipeline, eval_data_path: str):
     print("  F1:       ", round(F1.mean().item(), 4))
 
 if __name__ == "__main__":
-    document_paths = ["documents/vikings.txt"]  # Adjust path!
+    document_paths = glob.glob("documents/*.txt")  # Adjust path!
     pipeline = Pipeline(document_paths=document_paths)  # this will call retriever.add_documents()
     evaluate_pipeline(pipeline, "eval_set.jsonl")

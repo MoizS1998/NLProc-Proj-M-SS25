@@ -57,16 +57,25 @@ class Pipeline:
 
 
 
-    def _build_context(self, question, reranked_chunks, max_tokens=480):
+    def _build_context(self, question, reranked_chunks, max_tokens=800):
         tokenizer = self.generator.pipeline.tokenizer
-        context = ""
+        selected_chunks = []
+
         for chunk in reranked_chunks:
-            new_context = context + "\n" + chunk
-            input_ids = tokenizer.encode(f"Context:\n{new_context}\n\nQuestion: {question}", truncation=True)
+            temp_context = "\n\n".join(selected_chunks + [chunk])
+            input_text = f"Context:\n{temp_context}\n\nQuestion: {question}"
+            input_ids = tokenizer.encode(input_text, truncation=True)
+
             if len(input_ids) > max_tokens:
                 break
-            context = new_context  # This line should be inside the loop
-        return context.strip()
+
+            selected_chunks.append(chunk)
+
+        return "\n\n".join(selected_chunks).strip()
+
+
+
+
 
 
 
