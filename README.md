@@ -114,14 +114,6 @@ Visit `http://localhost:5000` in your browser.
 
 ---
 
-## ✍️ Authors
-
-- **Hordoya** – Chunking logic, evaluation scripts, testing
-- **Teammate A** – Generator prompt design, evaluation metrics
-- **Teammate B** – UI, visualization, logging
-
----
-
 ## 📜 License
 
 This project is for academic use only (Otto-Friedrich-Universität Bamberg, SS25).
