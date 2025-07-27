@@ -95,24 +95,6 @@ It will automatically:
 | BERTScore-R | 0.8381   |
 | BERTScore-F1| 0.8595   |
 
----
-
-## ✅ Example QA
-
-**Q:** *"What symbolic gift does Floki give Ivar?"*  
-**A:** *"Floki gives Ivar a blade of grass with a kink but no roots, comparing it to Ivar's resilience: 'You keep thriving where others perish'."*
-
----
-
-## 🚀 Run Web App (Optional)
-If you want to test with a UI:
-```bash
-pip install flask
-python app.py
-```
-Visit `http://localhost:5000` in your browser.
-
----
 
 ## 📜 License
 
